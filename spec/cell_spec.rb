@@ -36,5 +36,13 @@ RSpec.describe Cell do
     expect(cell.ship).to eq(cruiser)
   end
 
+  it "returns false when ship is placed" do
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+
+    cell.place_ship(cruiser)
+    expect(cell.empty?).to be false
+  end
+
 
 end
