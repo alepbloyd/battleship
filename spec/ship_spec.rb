@@ -14,4 +14,16 @@ RSpec.describe Ship do
     expect(ship.name).to eq("Cruiser")
   end
 
+  it 'returns length' do
+    ship = Ship.new("Cruiser", 3)
+
+    expect(ship.length).to eq(3)
+  end
+
+  it 'returns health' do
+    ship = Ship.new("Cruiser", 3)
+
+    expect(ship.health).to eq(3)
+  end
+
 end
