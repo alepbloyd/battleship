@@ -39,6 +39,11 @@ RSpec.describe Ship do
     expect(ship.health).to eq(2)
   end
 
-  
+  it 'can be hit more than once' do
+    ship = Ship.new("Cruiser", 3)
+    ship.hit
+    ship.hit
+    expect(ship.health).to eq(1)
+  end
 
 end
