@@ -26,4 +26,10 @@ RSpec.describe Ship do
     expect(ship.health).to eq(3)
   end
 
+  it 'initialize sunk as false' do
+    ship = Ship.new("Cruiser", 3)
+
+    expect(ship.sunk?).to eq false
+  end
+
 end
