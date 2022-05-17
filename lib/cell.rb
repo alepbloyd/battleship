@@ -5,13 +5,19 @@ class Cell
   def initialize(coordinate)
     @coordinate = coordinate
     @empty = true
+    @placed_ship = nil
   end
 
   def ship
+    @placed_ship
   end
 
   def empty?
     @empty
+  end
+
+  def place_ship(ship_type)
+    @placed_ship = ship_type
   end
 
 end
