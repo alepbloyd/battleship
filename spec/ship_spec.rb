@@ -1,4 +1,4 @@
-require './lib/ship.rb'
+require './lib/ship'
 require 'rspec'
 
 RSpec.describe Ship do
