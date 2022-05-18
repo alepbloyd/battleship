@@ -28,11 +28,19 @@ class Cell
 
   def fire_upon
     @fired_upon = true
-    @placed_ship.hit
+    if @placed_ship == nil
+      return
+    else
+      @placed_ship.hit
+    end
   end
 
   def render
-    "."
+    if @fired_upon && @placed_ship == nil
+      return "M"
+    else
+      return "."
+    end
   end
 
 end
