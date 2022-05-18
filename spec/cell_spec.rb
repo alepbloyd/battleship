@@ -68,5 +68,29 @@ RSpec.describe Cell do
 
   end
 
+  it "renders as '.' if not fired upon" do
+    cell_1 = Cell.new("B4")
+
+    expect(cell_1.render).to eq(".")
+  end
+
+  it "renders as 'M' when fired upon with no ship" do
+    cell_1 = Cell.new("B4")
+
+    cell_1.fire_upon
+
+    expect(cell_1.render).to eq("M")
+  end
+
+  it "returns 'S' when render set to true" do
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+
+    cell_2.place_ship(cruiser)
+
+    expect(cell_2.render(true)).to eq("S")
+
+  end
+
 
 end
