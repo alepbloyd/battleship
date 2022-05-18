@@ -31,4 +31,8 @@ class Cell
     @placed_ship.hit
   end
 
+  def render
+    "."
+  end
+
 end
