@@ -35,11 +35,27 @@ class Cell
     end
   end
 
-  def render
-    if @fired_upon && @placed_ship == nil
-      return "M"
+  def render(render_status = false)
+    if render_status == true
+      if @placed_ship == nil && @fired_upon
+        return "M"
+      elsif @placed_ship == nil && @fired_upon == false
+        return "."
+      elsif @placed_ship != nil && @fired_upon
+        return "H"
+      elsif @placed_ship != nil && @fired_upon == false
+        return "S"
+      end
     else
-      return "."
+      if @placed_ship == nil && @fired_upon
+        return "M"
+      elsif @placed_ship == nil && @fired_upon == false
+        return "."
+      elsif @placed_ship != nil && @fired_upon
+        return "H"
+      elsif @placed_ship != nil && @fired_upon == false
+        return "."
+      end
     end
   end
 
