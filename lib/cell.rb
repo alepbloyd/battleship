@@ -36,6 +36,10 @@ class Cell
   end
 
   def render(render_status = false)
+    if @placed_ship != nil && @placed_ship.sunk?
+      return "X"
+    end
+
     if render_status == true
       if @placed_ship == nil && @fired_upon
         return "M"
