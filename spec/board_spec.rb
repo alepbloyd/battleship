@@ -2,6 +2,7 @@ require './lib/ship'
 require './lib/cell'
 require './lib/board'
 require 'rspec'
+require 'pry'
 
 
 
@@ -21,6 +22,8 @@ RSpec.describe Board do
 
   it 'returns true for valid coordinate' do
     board = Board.new
+
+    board.cells
 
     expect(board.valid_coordinate?("A1")).to be true
 
