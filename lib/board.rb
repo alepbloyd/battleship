@@ -30,4 +30,8 @@ class Board
     @cell_hash.has_key?(coordinate)
   end
 
+  def valid_placement?(ship, coordinate_array)
+    ship.length == coordinate_array.length
+  end
+
 end
