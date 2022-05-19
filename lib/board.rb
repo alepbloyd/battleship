@@ -31,26 +31,61 @@ class Board
   end
 
   def valid_placement?(ship, coordinate_array)
-    valid_placement_length?(ship, coordinate_array) && valid_placement_consecutive?(ship, coordinate_array)
+    valid_placement_length?(ship, coordinate_array) && valid_placement_consecutive?(ship, coordinate_array) && is_diagonal?(coordinate_array) == false
     # ship.length == coordinate_array.length
   end
+
   def valid_placement_length?(ship, coordinate_array)
     ship.length == coordinate_array.length
   end
+
   def valid_placement_consecutive?(ship, coordinate_array)
-    letter_array = []
-    number_array = []
+
+    actual_letter_array = []
+    actual_number_array = []
+
     coordinate_array.each do |coordinate|
-      letter_array << coordinate[0]
-      number_array << coordinate[1].to_i
-    end
-    number_array.each_with_index do |number, index|
-      if number[index + 1] == number[index] + 1
-      else
-        return false
-      end
+      actual_letter_array << coordinate[0]
+      actual_number_array << coordinate[1].to_i
     end
 
+    actual_start_letter = actual_letter_array[0]
+
+    actual_start_number = actual_number_array[0]
+
+    expected_end_letter = (actual_start_letter.ord + ship.length - 1).chr
+
+    expected_end_number = actual_start_number + ship.length - 1
+
+    expected_letter_array = (actual_start_letter..expected_end_letter).to_a
+
+    expected_number_array = (actual_start_number..expected_end_number).to_a
+
+    expected_letter_array == actual_letter_array || expected_number_array == actual_number_array
+  end
+
+  def is_diagonal?(coordinate_array)
+    actual_letter_array = []
+    actual_number_array = []
+
+    coordinate_array.each do |coordinate|
+      actual_letter_array << coordinate[0]
+      actual_number_array << coordinate[1].to_i
+    end
+
+    if actual_letter_array.uniq.count == 1
+      letter_array_consistent = true
+    else
+      letter_array_consistent = false
+    end
+
+    if actual_number_array.uniq.count == 1
+      number_array_consistent = true
+    else
+      number_array_consistent = false
+    end
+
+    letter_array_consistent == false && number_array_consistent == false
   end
 
 end
