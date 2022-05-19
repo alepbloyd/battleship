@@ -80,6 +80,7 @@ RSpec.describe Cell do
     cell_1.fire_upon
 
     expect(cell_1.render).to eq("M")
+
   end
 
   it "returns 'S' when render set to true" do
@@ -91,6 +92,28 @@ RSpec.describe Cell do
     expect(cell_2.render(true)).to eq("S")
 
   end
+
+  it "returns 'H' when fired upon with a ship" do
+      cell_2 = Cell.new("C3")
+      cruiser = Ship.new("Cruiser", 3)
+
+      cell_2.place_ship(cruiser)
+      cell_2.fire_upon
+      expect(cell_2.render).to eq ("H")
+  end
+
+  it "sunk returns true when health is 0" do
+    cell_2 = Cell.new("C3")
+    cruiser = Ship.new("Cruiser", 3)
+
+    cell_2.place_ship(cruiser)
+    cell_2.fire_upon
+    cruiser.hit
+    cruiser.hit
+
+    expect(cruiser.sunk?).to eq true
+  end
+
 
 
 end
