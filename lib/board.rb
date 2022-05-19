@@ -31,7 +31,26 @@ class Board
   end
 
   def valid_placement?(ship, coordinate_array)
+    valid_placement_length?(ship, coordinate_array) && valid_placement_consecutive?(ship, coordinate_array)
+    # ship.length == coordinate_array.length
+  end
+  def valid_placement_length?(ship, coordinate_array)
     ship.length == coordinate_array.length
+  end
+  def valid_placement_consecutive?(ship, coordinate_array)
+    letter_array = []
+    number_array = []
+    coordinate_array.each do |coordinate|
+      letter_array << coordinate[0]
+      number_array << coordinate[1].to_i
+    end
+    number_array.each_with_index do |number, index|
+      if number[index + 1] == number[index] + 1
+      else
+        return false
+      end
+    end
+
   end
 
 end
