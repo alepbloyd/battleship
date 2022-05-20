@@ -88,4 +88,10 @@ class Board
     letter_array_consistent == false && number_array_consistent == false
   end
 
+  def place(ship,coordinate_array)
+    coordinate_array.each do |coordinate|
+      @cell_hash[coordinate].place_ship(ship)
+    end
+  end
+
 end
