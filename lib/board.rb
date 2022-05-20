@@ -1,6 +1,8 @@
+require 'pry'
+
 class Board
 
-  attr_reader :cells
+  attr_reader :cells, :occupied_cells
 
   def initialize
     @cells = {
@@ -21,6 +23,7 @@ class Board
       "D3" => Cell.new("D3"),
       "D4" => Cell.new("D4")
     }
+    @occupied_cells = []
   end
 
   def valid_coordinate?(coordinate)
@@ -28,8 +31,17 @@ class Board
   end
 
   def valid_placement?(ship, coordinate_array)
-    valid_placement_length?(ship, coordinate_array) && valid_placement_consecutive?(ship, coordinate_array) && is_diagonal?(coordinate_array) == false
-    # ship.length == coordinate_array.length
+    valid_placement_length?(ship, coordinate_array) && valid_placement_consecutive?(ship, coordinate_array) && is_diagonal?(coordinate_array) == false && valid_placement_overlap?(ship,coordinate_array)
+  end
+
+  def valid_placement_overlap?(ship,coordinate_array)
+    coordinate_array.each do |coordinate|
+      if @occupied_cells.include?(coordinate)
+        return false
+      else
+        return true
+      end
+    end
   end
 
   def valid_placement_length?(ship, coordinate_array)
@@ -88,6 +100,7 @@ class Board
   def place(ship,coordinate_array)
     coordinate_array.each do |coordinate|
       @cells[coordinate].place_ship(ship)
+      @occupied_cells << coordinate
     end
   end
 
