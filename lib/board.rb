@@ -1,33 +1,30 @@
 class Board
 
-  attr_reader :cell_hash
+  attr_reader :cells
 
   def initialize
-    @cell_hash = {}
-  end
-
-  def cells
-    @cell_hash["A1"] = Cell.new("A1")
-    @cell_hash["A2"] = Cell.new("A2")
-    @cell_hash["A3"] = Cell.new("A3")
-    @cell_hash["A4"] = Cell.new("A4")
-    @cell_hash["B1"] = Cell.new("B1")
-    @cell_hash["B2"] = Cell.new("B2")
-    @cell_hash["B3"] = Cell.new("B3")
-    @cell_hash["B4"] = Cell.new("B4")
-    @cell_hash["C1"] = Cell.new("C1")
-    @cell_hash["C2"] = Cell.new("C2")
-    @cell_hash["C3"] = Cell.new("C3")
-    @cell_hash["C4"] = Cell.new("C4")
-    @cell_hash["D1"] = Cell.new("D1")
-    @cell_hash["D2"] = Cell.new("D2")
-    @cell_hash["D3"] = Cell.new("D3")
-    @cell_hash["D4"] = Cell.new("D4")
-    @cell_hash
+    @cells = {
+      "A1" => Cell.new("A1"),
+      "A2" => Cell.new("A2"),
+      "A3" => Cell.new("A3"),
+      "A4" => Cell.new("A4"),
+      "B1" => Cell.new("B1"),
+      "B2" => Cell.new("B2"),
+      "B3" => Cell.new("B3"),
+      "B4" => Cell.new("B4"),
+      "C1" => Cell.new("C1"),
+      "C2" => Cell.new("C2"),
+      "C3" => Cell.new("C3"),
+      "C4" => Cell.new("C4"),
+      "D1" => Cell.new("D1"),
+      "D2" => Cell.new("D2"),
+      "D3" => Cell.new("D3"),
+      "D4" => Cell.new("D4")
+    }
   end
 
   def valid_coordinate?(coordinate)
-    @cell_hash.has_key?(coordinate)
+    @cells.has_key?(coordinate)
   end
 
   def valid_placement?(ship, coordinate_array)
@@ -90,7 +87,7 @@ class Board
 
   def place(ship,coordinate_array)
     coordinate_array.each do |coordinate|
-      @cell_hash[coordinate].place_ship(ship)
+      @cells[coordinate].place_ship(ship)
     end
   end
 
