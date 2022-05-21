@@ -104,20 +104,26 @@ class Board
     end
   end
 
-  def render(render_status = false)
-      if render_status == true
-        "  1 2 3 4 \n" +
-        "A #{@cells["A1"].render(true)} #{@cells["A2"].render(true)} #{@cells["A3"].render(true)} #{@cells["A4"].render(true)} \n" +
-        "B #{@cells["B1"].render(true)} #{@cells["B2"].render(true)} #{@cells["B3"].render(true)} #{@cells["B4"].render(true)} \n" +
-        "C #{@cells["C1"].render(true)} #{@cells["C2"].render(true)} #{@cells["C3"].render(true)} #{@cells["C4"].render(true)} \n" +
-        "D #{@cells["D1"].render(true)} #{@cells["D2"].render(true)} #{@cells["D3"].render(true)} #{@cells["D4"].render(true)} \n"
-      else
+  def number_of_rows
+    cells_letter_array = []
 
-        "  1 2 3 4 \n" +
-        "A #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
-        "B #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n" +
-        "C #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n" +
-        "D #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
-      end
+    (@cells.keys).each do |key|
+      cells_letter_array << key[0]
+    end
+
+    unique_letter_count = cells_letter_array.uniq.count
+    unique_letter_count
   end
+
+  def number_of_columns
+    cells_number_array = []
+
+    (@cells.keys).each do |key|
+      cells_number_array << key[1..-1]
+    end
+
+    unique_number_count = cells_number_array.uniq.count
+    unique_number_count
+  end
+
 end
