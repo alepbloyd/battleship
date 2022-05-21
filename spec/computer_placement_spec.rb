@@ -21,10 +21,27 @@ RSpec.describe ComputerPlacement do
     board = Board.new
 
     cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
 
     computer_placement = ComputerPlacement.new(board)
 
     expect(computer_placement.horizontal_placements(board,cruiser).count).to eq(8)
+
+    expect(computer_placement.horizontal_placements(board,submarine).count).to eq(12)
+
+  end
+
+  it 'returns vertical placements for column by ship length' do
+    board = Board.new
+
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    computer_placement = ComputerPlacement.new(board)
+
+    expect(computer_placement.vertical_placements(board,cruiser).count).to eq(8)
+
+    expect(computer_placement.vertical_placements(board,submarine).count).to eq(12)
 
   end
 
