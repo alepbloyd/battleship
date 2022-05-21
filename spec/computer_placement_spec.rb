@@ -15,4 +15,12 @@ RSpec.describe ComputerPlacement do
     expect(computer_placement).to be_instance_of(ComputerPlacement)
   end
 
+  it 'returns number of rows on board' do
+    board = Board.new
+
+    computer_placement = ComputerPlacement.new
+
+    expect(computer_placement.number_of_rows).to eq(4)
+  end
+
 end
