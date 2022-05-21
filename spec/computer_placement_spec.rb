@@ -45,4 +45,15 @@ RSpec.describe ComputerPlacement do
 
   end
 
+  it 'returns array of combined valid placements' do
+    board = Board.new
+
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+
+    computer_placement = ComputerPlacement.new(board)
+
+    expect(computer_placement.combined_valid_placements(board,cruiser).count).to eq(16)
+  end
+
 end
