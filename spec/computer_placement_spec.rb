@@ -11,12 +11,13 @@ RSpec.describe ComputerPlacement do
 
   it 'exists' do
     board = Board.new
+
     computer_placement = ComputerPlacement.new(board)
 
     expect(computer_placement).to be_instance_of(ComputerPlacement)
   end
 
-  xit 'returns horizontal placements for row by ship length' do
+  it 'returns horizontal placements for row by ship length' do
     board = Board.new
 
     cruiser = Ship.new("Cruiser", 3)
