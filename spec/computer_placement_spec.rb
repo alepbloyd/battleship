@@ -32,4 +32,15 @@ RSpec.describe ComputerPlacement do
     expect(computer_placement.number_of_columns).to eq(4)
   end
 
+  it 'returns horizontal placements for row by ship length' do
+    board = Board.new
+
+    cruiser = Ship.new("Cruiser", 3)
+
+    computer_placement = ComputerPlacement.new(board)
+
+    expect(computer_placement.horizontal_placements.count).to eq(8)
+
+  end
+
 end
