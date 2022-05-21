@@ -56,4 +56,6 @@ RSpec.describe ComputerPlacement do
     expect(computer_placement.combined_valid_placements(board,cruiser).count).to eq(16)
   end
 
+  
+
 end
