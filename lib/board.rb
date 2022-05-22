@@ -126,4 +126,12 @@ class Board
     unique_number_count
   end
 
+  def render(render_status = false)
+    "  1 2 3 4 \n" +
+    "A #{@cells["A1"].render(render_status)} #{@cells["A2"].render(render_status)} #{@cells["A3"].render(render_status)} #{@cells["A4"].render(render_status)} \n" +
+    "B #{@cells["B1"].render(render_status)} #{@cells["B2"].render(render_status)} #{@cells["B3"].render(render_status)} #{@cells["B4"].render(render_status)} \n" +
+    "C #{@cells["C1"].render(render_status)} #{@cells["C2"].render(render_status)} #{@cells["C3"].render(render_status)} #{@cells["C4"].render(render_status)} \n" +
+    "D #{@cells["D1"].render(render_status)} #{@cells["D2"].render(render_status)} #{@cells["D3"].render(render_status)} #{@cells["D4"].render(render_status)} \n"
+  end
+
 end
