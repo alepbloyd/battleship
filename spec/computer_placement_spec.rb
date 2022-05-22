@@ -76,7 +76,7 @@ RSpec.describe ComputerPlacement do
 
     computer_placement = ComputerPlacement.new(board)
 
-    computer_placement.choose_valid_selection(board,cruiser)
+    first_placement = computer_placement.choose_valid_selection(board,cruiser)
 
     expect(computer_placement.combined_valid_placements(board,submarine).count).to be < 24
   end
