@@ -57,6 +57,16 @@ RSpec.describe ComputerPlacement do
     expect(computer_placement.combined_valid_placements(board,submarine).count).to eq(24)
   end
 
+  it 'selects a random valid placement' do
+    board = Board.new
+
+    cruiser = Ship.new("Cruiser", 3)
+
+    computer_placement = ComputerPlacement.new(board)
+
+    expect(computer_placement.valid_selection(board,cruiser).count).to eq(3)
+  end
+
 
 
 end
