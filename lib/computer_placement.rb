@@ -6,6 +6,7 @@ class ComputerPlacement
 
   def initialize(board)
     @board = board
+    @used_cells = []
   end
 
   def horizontal_placements(gameboard,ship)
@@ -63,6 +64,16 @@ class ComputerPlacement
 
   def combined_valid_placements(gameboard,ship)
     horizontal_placements(gameboard,ship) + vertical_placements(gameboard,ship)
+  end
+
+  def valid_selection(gameboard,ship)
+    selection = combined_valid_placements(gameboard,ship).sample
+
+    selection.each do |element|
+      @used_cells << element
+    end
+
+    selection
   end
 
 end
