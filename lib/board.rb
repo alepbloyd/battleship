@@ -2,28 +2,59 @@ require 'pry'
 
 class Board
 
-  attr_reader :cells, :occupied_cells
+  attr_reader :cells, :occupied_cells, :rows_array, :columns_array, :cells_array
 
   def initialize
-    @cells = {
-      "A1" => Cell.new("A1"),
-      "A2" => Cell.new("A2"),
-      "A3" => Cell.new("A3"),
-      "A4" => Cell.new("A4"),
-      "B1" => Cell.new("B1"),
-      "B2" => Cell.new("B2"),
-      "B3" => Cell.new("B3"),
-      "B4" => Cell.new("B4"),
-      "C1" => Cell.new("C1"),
-      "C2" => Cell.new("C2"),
-      "C3" => Cell.new("C3"),
-      "C4" => Cell.new("C4"),
-      "D1" => Cell.new("D1"),
-      "D2" => Cell.new("D2"),
-      "D3" => Cell.new("D3"),
-      "D4" => Cell.new("D4")
-    }
+    @cells = {}
+    @number_of_rows = 0
+    @rows_array = []
+    @columns_array = []
+    @cells_array = []
+    @number_of_columns = 0
     @occupied_cells = []
+  end
+
+  def get_board_size
+    puts "Please enter number of rows you would like to play with."
+
+    rows_input = gets.chomp
+
+    while convertible_to_integer?(rows_input) == false do
+      puts "Invalid input! Please enter a positive integer!"
+      rows_input = gets.chomp
+    end
+
+    puts "Please enter number of columns you would like to play with."
+
+    columns_input = gets.chomp
+
+    while convertible_to_integer?(columns_input) == false do
+      puts "Invalid input! Please enter a positive integer!"
+      columns_input = gets.chomp
+    end
+
+    @number_of_rows = rows_input.to_i
+    @number_of_columns = columns_input.to_i
+
+    #this is where to add to the @cells hash based on input
+    # rows_array = ()
+    @columns_array = (1..@number_of_columns).to_a
+    @rows_array = ("A"..(65 + @number_of_rows - 1).chr).to_a
+
+    @rows_array.each do |letter|
+      @columns_array.each do |number|
+        @cells_array << "#{letter}#{number}"
+      end
+    end
+
+    @cells_array.each do |cell|
+      @cells[cell] = Cell.new(cell)
+    end
+
+  end
+
+  def convertible_to_integer?(string)
+    string.to_i.to_s == string
   end
 
   def valid_coordinate?(coordinate)
@@ -127,11 +158,24 @@ class Board
   end
 
   def render(render_status = false)
-    "  1 2 3 4 \n" +
-    "A #{@cells["A1"].render(render_status)} #{@cells["A2"].render(render_status)} #{@cells["A3"].render(render_status)} #{@cells["A4"].render(render_status)} \n" +
-    "B #{@cells["B1"].render(render_status)} #{@cells["B2"].render(render_status)} #{@cells["B3"].render(render_status)} #{@cells["B4"].render(render_status)} \n" +
-    "C #{@cells["C1"].render(render_status)} #{@cells["C2"].render(render_status)} #{@cells["C3"].render(render_status)} #{@cells["C4"].render(render_status)} \n" +
-    "D #{@cells["D1"].render(render_status)} #{@cells["D2"].render(render_status)} #{@cells["D3"].render(render_status)} #{@cells["D4"].render(render_status)} \n"
+    row_chunks = @cells_array.each_slice(@number_of_columns).to_a
+
+    start_render_line = "  "
+    middle_render_lines = ""
+
+    @columns_array.each do |number|
+      start_render_line += "#{number} "
+    end
+
+    @rows_array.count.times do |row|
+      new_line = "#{(65+row).chr} "
+
+      render_line = row_chunks[row].map{ |element| @cells[element].render(render_status)}
+
+      middle_render_lines += (new_line + render_line.join(' ') + " \n")
+    end
+
+    start_render_line + " \n" + middle_render_lines
   end
 
 end
