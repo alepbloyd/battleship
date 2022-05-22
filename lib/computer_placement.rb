@@ -63,12 +63,21 @@ class ComputerPlacement
   end
 
   def combined_valid_placements(gameboard,ship)
-    horizontal_placements(gameboard,ship) + vertical_placements(gameboard,ship)
+    total_placements = horizontal_placements(gameboard,ship) + vertical_placements(gameboard,ship)
+
+    @used_cells.each do |cell|
+
+      total_placements.delete_if do |placement|
+        placement.include?(cell)
+      end
+
+    end
+    total_placements
   end
 
-  def valid_selection(gameboard,ship)
-    selection = combined_valid_placements(gameboard,ship).sample
+  def choose_valid_selection(gameboard,ship)
 
+    selection = combined_valid_placements(gameboard,ship).sample
     selection.each do |element|
       @used_cells << element
     end
