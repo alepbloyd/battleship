@@ -109,6 +109,7 @@ RSpec.describe Board do
     expect(board.valid_placement?(submarine, ["A1","B1"])).to be false
     expect(board.valid_placement?(submarine_2, ["A1","A2"])).to be false
     expect(board.valid_placement?(submarine_3, ["D1","D2"])).to be true
+
   end
 
   it "renders with '.' when initiated" do
@@ -129,6 +130,17 @@ RSpec.describe Board do
     expect(board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n")
   end
 
+  it 'returns number of rows' do
+    board = Board.new
+
+    expect(board.number_of_rows).to eq(4)
+  end
+
+  it 'returns number of columns' do
+    board = Board.new
+
+    expect(board.number_of_columns).to eq(4)
+  end
 
 
 end
