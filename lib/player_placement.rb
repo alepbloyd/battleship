@@ -22,17 +22,27 @@ attr_reader :board, :ships_to_be_placed
   end
 
   def user_input_array(input)
+    input = gets.chomp
     input.split(" ")
   end
 
   def check_user_input(ship, input_array)
     check_input = user_input_array(input_array)
-    if @board.valid_placement?(ship, check_input)
-      @board.place(ship, check_input)
-      @ships_to_be_placed.shift
-    else
-      "Those are invalid coordinates. Please try again:"
+    while @board.valid_placement?(ship, check_input) == false do
+      puts "Those are invalid coordinates. Please try again:"
+      check_input = user_input_array(input_array)
     end
+    @board.place(ship, check_input)
+    @ships_to_be_placed.shift
+
+
+
+    # if @board.valid_placement?(ship, check_input)
+    #   @board.place(ship, check_input)
+    #   @ships_to_be_placed.shift
+    # else
+    #   "Those are invalid coordinates. Please try again:"
+    # end
   end
   def place_ship
     @board.place(ship, input_array)
