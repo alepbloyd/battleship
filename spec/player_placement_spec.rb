@@ -104,6 +104,29 @@ RSpec.describe PlayerPlacement do
     player_placement.ship_input(submarine)
     player_placement.check_user_input(cruiser, user_input_1)
     expect(player_placement.ship_instructions).to eq("Enter the squares for the Submarine (2 spaces):")
+  end
+  it "places a second ship" do
+    board = Board.new
+    player_placement = PlayerPlacement.new(board)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    user_input_1 = "A1 A2 A3"
+    user_input_2 = "B1 B2"
+    player_placement.ship_input(cruiser)
+    player_placement.ship_input(submarine)
+    player_placement.check_user_input(cruiser, user_input_1)
+    player_placement.check_user_input(submarine, user_input_2)
+    expect(player_placement.board.render(true)).to eq("  1 2 3 4 \nA S S S . \nB S S . . \nC . . . . \nD . . . . \n")
+  end
+  it "re-prompts user if ship coordinates are invalid" do
+    board = Board.new
+    player_placement = PlayerPlacement.new(board)
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    user_input_1 = "A1 A2 A3"
+    user_input_2 = "B1 B2"
+    player_placement.ship_input(cruiser)
+    player_placement.ship_input(submarine)
 
   end
 
