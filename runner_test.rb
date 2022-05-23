@@ -72,3 +72,85 @@ puts computer_placement.board.render(true)
 puts player_placement.board.render(true)
 
 puts turn1.shot_feedback_for_player
+
+puts turn1.shot_feedback_for_computer
+
+turn2 = Turn.new(computer_board,player_board)
+
+puts turn2.current_boards_state
+
+turn2.user_fire_on_cell
+
+turn2.computer_fire_on_cell
+
+puts computer_placement.board.render(true)
+
+puts player_placement.board.render(true)
+
+puts turn2.shot_feedback_for_player
+
+puts turn2.shot_feedback_for_computer
+
+turn3 = Turn.new(computer_board,player_board)
+
+puts turn3.current_boards_state
+
+turn3.user_fire_on_cell
+
+turn3.computer_fire_on_cell
+
+puts computer_placement.board.render(true)
+
+puts player_placement.board.render(true)
+
+puts turn3.shot_feedback_for_player
+
+puts turn3.shot_feedback_for_computer
+
+turn4 = Turn.new(computer_board,player_board)
+
+puts turn4.current_boards_state
+
+turn4.user_fire_on_cell
+
+turn4.computer_fire_on_cell
+
+puts computer_placement.board.render(true)
+
+puts player_placement.board.render(true)
+
+puts turn4.shot_feedback_for_player
+
+puts turn4.shot_feedback_for_computer
+
+turn5 = Turn.new(computer_board,player_board)
+
+puts turn5.current_boards_state
+
+turn5.user_fire_on_cell
+
+turn5.computer_fire_on_cell
+
+puts computer_placement.board.render(true)
+
+puts player_placement.board.render(true)
+
+puts turn5.shot_feedback_for_player
+
+puts turn5.shot_feedback_for_computer
+
+turn6 = Turn.new(computer_board,player_board)
+
+puts turn6.current_boards_state
+
+turn6.user_fire_on_cell
+
+turn6.computer_fire_on_cell
+
+puts computer_placement.board.render(true)
+
+puts player_placement.board.render(true)
+
+puts turn6.shot_feedback_for_player
+
+puts turn6.shot_feedback_for_computer
