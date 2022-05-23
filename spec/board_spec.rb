@@ -142,5 +142,13 @@ RSpec.describe Board do
     expect(board.number_of_columns).to eq(4)
   end
 
+  xit 'generates board size by user input' do
+    board = Board.new
+
+    board.get_board_size
+
+    expect(board.number_of_rows).to eq(5)
+    expect(board.number_of_columns).to eq(5)
+  end
 
 end

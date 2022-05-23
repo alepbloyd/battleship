@@ -36,8 +36,6 @@ class Board
     @number_of_rows = rows_input.to_i
     @number_of_columns = columns_input.to_i
 
-    #this is where to add to the @cells hash based on input
-    # rows_array = ()
     @columns_array = (1..@number_of_columns).to_a
     @rows_array = ("A"..(65 + @number_of_rows - 1).chr).to_a
 

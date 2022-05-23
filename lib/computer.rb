@@ -1,6 +1,6 @@
 require 'pry'
 
-class ComputerPlacement
+class Computer
 
   attr_reader :board
 
