@@ -40,21 +40,15 @@ class Turn
     end
 
     @computer_cells_array.delete(user_input)
-
     @used_computer_board_cells << user_input
-
     @computer_board.cells[user_input].fire_upon
-
     user_input
   end
 
   def computer_fire_on_cell
     random_selection = @user_cells_array.sample
-
     @user_cells_array.delete(random_selection)
-
     @used_player_board_cells << random_selection
-
     @player_board.cells[random_selection].fire_upon
 
     random_selection
@@ -70,7 +64,6 @@ class Turn
     elsif @computer_board.cells[previous_shot].render == "X"
       "Your shot on #{previous_shot} sunk the ship. Woo!"
     end
-
   end
 
   def shot_feedback_for_computer
