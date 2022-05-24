@@ -78,6 +78,9 @@ class ComputerPlacement
   def choose_valid_selection(gameboard,ship)
 
     selection = combined_valid_placements(gameboard,ship).sample
+
+    @board.place(ship,selection)
+
     selection.each do |element|
       @used_cells << element
     end
