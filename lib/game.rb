@@ -8,10 +8,10 @@ class Game
     @computer_board = Board.new
     @computer_placement = ComputerPlacement.new(@computer_board)
     @player_placement = PlayerPlacement.new(@player_board)
-    @user_cruiser = Ship.new("Cruiser", 3)
-    @user_submarine = Ship.new("Submarine", 2)
-    @computer_cruiser = Ship.new("Cruiser",3)
-    @computer_submarine = Ship.new("Submarine",2)
+    @user_cruiser = Ship.new("Explorer 1", 3)
+    @user_submarine = Ship.new("Drone", 2)
+    @computer_cruiser = Ship.new("Sputnick",3)
+    @computer_submarine = Ship.new("Drone",2)
     @gameover = false
     @used_computer_board_cells = []
     @used_player_board_cells = []
@@ -21,15 +21,16 @@ class Game
   end
 
   def start_game
-    puts "Welcome to BATTLESHIP"
-    puts "Enter p to play. Enter q to quit."
-    puts "Enter quit! at anytime to leave the game"
+    puts "Welcome to SPACERACE!"
+    puts "Feautring USA(user) vs USSR(computer)"
+    puts "Enter: p to LAUNCH. Enter: q to SURRENDER."
+    puts "You may exit this journey at anytime by entering: quit!"
     start_choice = gets.chomp
     if start_choice == "quit!"
       exit
     end
     while start_choice != "p" && start_choice != "q" do
-      puts "Invalid selection"
+      puts "p to play, q to quit."
       start_choice = gets.chomp
     end
     if start_choice == "q"
@@ -40,7 +41,7 @@ class Game
     @computer_placement.choose_valid_selection(@computer_board,@computer_submarine)
     @player_placement.ship_input(@user_cruiser)
     @player_placement.ship_input(@user_submarine)
-    puts "I have laid out my ships on the grid."
+    puts "My satellites have launched and are ready for battle!"
     puts @player_placement.opening_prompt
     puts
     puts @player_placement.board.render
@@ -50,9 +51,9 @@ class Game
     puts @player_placement.board.render(true)
     puts @player_placement.ship_instructions
     @player_placement.check_user_input(@player_placement.ships_to_be_placed[0])
-    puts "COMPUTER BOARD"
+    puts "USSR BOARD"
     puts @computer_placement.board.render(true)
-    puts "PLAYER BOARD"
+    puts "USA BOARD"
     puts @player_placement.board.render(true)
   end
 
@@ -61,7 +62,7 @@ class Game
 
     new_turn.current_boards_state
 
-    puts "Enter the coordinate for your shot:"
+    puts "Enter the coordinates for your shot:"
     user_input = gets.chomp
     if user_input == "quit!"
       exit
@@ -71,7 +72,7 @@ class Game
       if @computer_board.valid_coordinate?(user_input)
         puts "Please enter a valid coordinate:"
       elsif @used_computer_board_cells.include?(user_input)
-        puts "Oops you already shot there"
+        puts "Wake up! You have already performed a shot on this coordinate."
       end
       user_input = gets.chomp
     end
@@ -91,30 +92,30 @@ class Game
     elsif @computer_board.cells[previous_shot].render == "M"
       puts "Your shot on #{previous_shot} was a miss."
     elsif @computer_board.cells[previous_shot].render == "X"
-      puts "Your shot on #{previous_shot} sunk the ship. Woo!"
+      puts "Your shot on #{previous_shot} has eliminated a satellite! Keep it up!!!"
     end
     previous_shot = @used_player_board_cells.last
     if @player_board.cells[previous_shot].render == "H"
-      puts "My shot on #{previous_shot} was a hit."
+      puts "USSR shot on #{previous_shot} was a hit."
     elsif @player_board.cells[previous_shot].render == "M"
-      puts "My shot on #{previous_shot} was a miss."
+      puts "USSR shot on #{previous_shot} was a miss."
     elsif @player_board.cells[previous_shot].render == "X"
-      puts "My shot on #{previous_shot} sunk the ship. Woo!"
+      puts "USSR shot on #{previous_shot} Oh no, we lost a satellite! Get it together!!!"
     end
     puts @computer_board.render(true)#take out
     puts
     puts @player_board.render(true)
     if @computer_cruiser.sunk? == true && @computer_submarine.sunk? == true
       @gameover = true
-      puts "GAME OVER, PLAYER WINS!!!"
+      puts "GAME OVER, USA WINS!!!"
     elsif @user_cruiser.sunk? == true && @user_submarine.sunk? == true
       @gameover = true
-      puts "GAME OVER, COMPUTER WINS!!!"
+      puts "GAME OVER, USSR WINS!!!"
     end
   end
 
   def game_over_text
-    puts "The game is over."
+    puts "This race has ended, History has been written."
     sleep(3)
 
     puts "Play again?"
