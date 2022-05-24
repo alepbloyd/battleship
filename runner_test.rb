@@ -43,9 +43,9 @@ player_placement.check_user_input(player_placement.ships_to_be_placed[0])
 
 puts
 
-puts player_placement.board.render(true)
 
-puts
+
+
 
 puts player_placement.ship_instructions
 
@@ -107,6 +107,8 @@ puts turn3.shot_feedback_for_player
 
 puts turn3.shot_feedback_for_computer
 
+puts turn3.check_if_game_should_end
+
 turn4 = Turn.new(computer_board,player_board)
 
 puts turn4.current_boards_state
@@ -123,7 +125,11 @@ puts turn4.shot_feedback_for_player
 
 puts turn4.shot_feedback_for_computer
 
+puts turn4.check_if_game_should_end
+
 turn5 = Turn.new(computer_board,player_board)
+
+binding.pry
 
 puts turn5.current_boards_state
 
@@ -139,7 +145,12 @@ puts turn5.shot_feedback_for_player
 
 puts turn5.shot_feedback_for_computer
 
+puts turn5.check_if_game_should_end
+
+
 turn6 = Turn.new(computer_board,player_board)
+
+
 
 puts turn6.current_boards_state
 

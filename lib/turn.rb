@@ -68,11 +68,9 @@ class Turn
       "Your shot on #{previous_shot} was a miss."
     elsif @computer_board.cells[previous_shot].render == "X"
       @hits_by_player += 1
-      if @hits_by_player >= 5
-        "GAME OVER: PLAYER WINS"
-      end
       "Your shot on #{previous_shot} sunk the ship. Woo!"
     end
+
   end
 
   def shot_feedback_for_computer
@@ -85,9 +83,6 @@ class Turn
       "My shot on #{previous_shot} was a miss."
     elsif @player_board.cells[previous_shot].render == "X"
       @hits_by_computer += 1
-      if @hits_by_computer >= 5
-        'GAME OVER: COMPUTER WINS'
-      end
       "My shot on #{previous_shot} sunk the ship. Woo!"
     end
   end
