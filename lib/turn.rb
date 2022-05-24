@@ -17,8 +17,6 @@ class Turn
     @used_player_board_cells = []
     @computer_cells_array = ["A1","A2","A3","A4","B1","B2","B3","B4","C1","C2","C3","C4","D1","D2","D3","D4"]
     @user_cells_array = ["A1","A2","A3","A4","B1","B2","B3","B4","C1","C2","C3","C4","D1","D2","D3","D4"]
-    @hits_by_player = 0
-    @hits_by_computer = 0
   end
 
   def current_boards_state
@@ -46,6 +44,8 @@ class Turn
     @used_computer_board_cells << user_input
 
     @computer_board.cells[user_input].fire_upon
+
+    user_input
   end
 
   def computer_fire_on_cell
@@ -56,18 +56,18 @@ class Turn
     @used_player_board_cells << random_selection
 
     @player_board.cells[random_selection].fire_upon
+
+    random_selection
   end
 
   def shot_feedback_for_player
     previous_shot = @used_computer_board_cells.last
 
     if @computer_board.cells[previous_shot].render == "H"
-      @hits_by_player += 1
       "Your shot on #{previous_shot} was a hit."
     elsif @computer_board.cells[previous_shot].render == "M"
       "Your shot on #{previous_shot} was a miss."
     elsif @computer_board.cells[previous_shot].render == "X"
-      @hits_by_player += 1
       "Your shot on #{previous_shot} sunk the ship. Woo!"
     end
 
@@ -77,12 +77,10 @@ class Turn
     previous_shot = @used_player_board_cells.last
 
     if @player_board.cells[previous_shot].render == "H"
-      @hits_by_computer += 1
       "My shot on #{previous_shot} was a hit."
     elsif @player_board.cells[previous_shot].render == "M"
       "My shot on #{previous_shot} was a miss."
     elsif @player_board.cells[previous_shot].render == "X"
-      @hits_by_computer += 1
       "My shot on #{previous_shot} sunk the ship. Woo!"
     end
   end
