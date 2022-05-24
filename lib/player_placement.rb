@@ -24,10 +24,14 @@ attr_reader :board, :ships_to_be_placed
   def user_input_array
     input = gets.chomp
     input.split(" ")
+
   end
 
   def check_user_input(ship)
     check_input = user_input_array
+    if check_input[0] == "quit!"
+      exit
+    end
     while @board.valid_placement?(ship, check_input) == false do
       puts "Those are invalid coordinates. Please try again:"
       check_input = user_input_array
