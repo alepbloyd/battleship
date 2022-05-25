@@ -12,7 +12,7 @@ class Game
     @player_cruiser = Ship.new("Explorer 1", 3)
     @player_submarine = Ship.new("Drone", 2)
 
-    @computer_cruiser = Ship.new("Sputnick",3)
+    @computer_cruiser = Ship.new("Sputnik 1",3)
     @computer_submarine = Ship.new("Drone",2)
 
     @gameover = false
@@ -52,7 +52,7 @@ class Game
     puts
     puts "Please enter vertical lunar miles for battle"
 
-    columns_input = gets.downcase.chomp
+    columns_input = gets.chomp
 
     if columns_input == "i surrender!"
       exit
@@ -184,7 +184,7 @@ class Game
 
   def take_turn
     puts "Enter the coordinates for your shot:"
-    player_input = gets.chomp
+    player_input = gets.chomp.upcase
 
     if player_input == "i surrender!"
       exit
@@ -193,13 +193,13 @@ class Game
     while @computer_board.valid_coordinate?(player_input) == false || @used_computer_board_cells.include?(player_input) do
       if @computer_board.valid_coordinate?(player_input) == false
         puts "Please enter a valid coordinate:"
-        player_input = gets.chomp
+        player_input = gets.chomp.upcase
         if player_input == "i surrender!"
           exit
         end
       elsif @used_computer_board_cells.include?(player_input)
         puts "Wake up! You have already performed a shot on this coordinate."
-        player_input = gets.chomp
+        player_input = gets.chomp.upcase
         if player_input == "i surrender!"
           exit
         end
@@ -263,11 +263,11 @@ class Game
     puts "Play again?"
     puts "Enter p to play. Enter q to quit"
 
-    start_choice = gets.chomp
+    start_choice = gets.downcase.chomp
 
     while start_choice != "p" && start_choice != "q" do
       puts "Invalid selection"
-      start_choice = gets.chomp
+      start_choice = gets.downcase.chomp
     end
 
     if start_choice == "q"

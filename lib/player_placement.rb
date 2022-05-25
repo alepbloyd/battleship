@@ -30,7 +30,7 @@ class PlayerPlacement
 
   def check_player_input(ship)
 
-    input = gets.chomp
+    input = gets.chomp.upcase
 
     input_array = input.split(" ")
 
