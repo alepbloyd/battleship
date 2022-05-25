@@ -141,7 +141,7 @@ class Game
 
     while start_choice != "launch" && start_choice != "surrender" do
       puts "'#{start_choice}' is not 'LAUNCH' or 'SURRENDER'"
-      start_choice = gets.chomp
+      start_choice = gets.downcase.chomp
     end
 
     puts

@@ -20,7 +20,7 @@ class PlayerPlacement
   end
 
   def ship_instructions
-    "Enter the sectors for the #{@ships_to_be_placed[0].name} (#{@ships_to_be_placed[0].length} spaces) in 'A1 B1' format:"
+    "Enter the sectors for the #{@ships_to_be_placed[0].name} (#{@ships_to_be_placed[0].length} spaces) in 'A1 B1 C1' format:"
   end
 
   def player_input_array
@@ -42,12 +42,18 @@ class PlayerPlacement
       puts "That is an invalid input!"
       puts "Please enter in 'A1 A2 A3' format"
       input = gets.chomp.upcase
+      if input.downcase == "i surrender!"
+        exit
+      end
       input_array = input.split(" ")
     end
 
     while @board.valid_placement?(ship, input_array) == false do
       puts "Those are invalid coordinates. Please try again:"
       input = gets.chomp.upcase
+      if input.downcase == "i surrender!"
+        exit
+      end
       input_array = input.split(" ")
     end
 
