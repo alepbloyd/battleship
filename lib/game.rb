@@ -186,7 +186,7 @@ class Game
     puts "Enter the coordinates for your shot:"
     player_input = gets.chomp.upcase
 
-    if player_input == "i surrender!"
+    if player_input.downcase == "i surrender!"
       exit
     end
 

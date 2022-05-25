@@ -20,7 +20,7 @@ class PlayerPlacement
   end
 
   def ship_instructions
-    "Enter the sectors for the #{@ships_to_be_placed[0].name} (#{@ships_to_be_placed[0].length} spaces) in 'A1 B1 format':"
+    "Enter the sectors for the #{@ships_to_be_placed[0].name} (#{@ships_to_be_placed[0].length} spaces) in 'A1 B1' format:"
   end
 
   def player_input_array
