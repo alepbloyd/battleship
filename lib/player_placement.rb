@@ -41,13 +41,13 @@ class PlayerPlacement
     while input.split(" ").class != Array
       puts "That is an invalid input!"
       puts "Please enter in 'A1 A2 A3' format"
-      input = gets.chomp
+      input = gets.chomp.upcase
       input_array = input.split(" ")
     end
 
     while @board.valid_placement?(ship, input_array) == false do
       puts "Those are invalid coordinates. Please try again:"
-      input = gets.chomp
+      input = gets.chomp.upcase
       input_array = input.split(" ")
     end
 
