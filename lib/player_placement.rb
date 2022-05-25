@@ -22,7 +22,7 @@ attr_reader :board, :ships_to_be_placed
   end
 
   def user_input_array
-    input = gets.chomp
+    input = gets.chomp.upcase
     input.split(" ")
 
   end
