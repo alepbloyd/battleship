@@ -38,9 +38,9 @@ class Game
   def set_board_size
     puts "Please enter horizontal lunar miles for battle:"
 
-    rows_input = gets.chomp
+    rows_input = gets.downcase.chomp
 
-    if rows_input == "I surrender!"
+    if rows_input == "i surrender!"
       exit
     end
 
@@ -48,12 +48,13 @@ class Game
       puts "Invalid input! Please enter a positive integer!"
       rows_input = gets.chomp
     end
-
+    puts "**" * 20
+    puts
     puts "Please enter vertical lunar miles for battle"
 
-    columns_input = gets.chomp
+    columns_input = gets.downcase.chomp
 
-    if columns_input == "I surrender!"
+    if columns_input == "i surrender!"
       exit
     end
 
@@ -100,22 +101,27 @@ class Game
     puts
     puts "**" * 4 + "  Welcome to SPACERACE!  " + "**" * 4
     puts
+    sleep(1)
     puts
     puts "+x" * 8 + "  U S A  " + "+x" * 8
     puts
+    sleep(0.4)
     puts
     puts"**" * 8 + "   VS   " + "**" * 8
     puts
+    sleep(0.4)
     puts
     puts "+x" * 7 + "  U S S R  " + "+x" * 8
     puts
+    sleep(0.4)
     puts
     puts "**" * 20
+    sleep(1)
     puts
-    puts "(You may exit this journey at anytime by entering:"
+    puts "You may exit this journey at anytime by entering:"
     puts
     puts
-    puts "I surrender!"
+    puts "`I surrender!`"
     puts
     puts
     puts "**" * 20
@@ -127,33 +133,23 @@ class Game
     puts "**" * 22
     start_choice = gets.downcase.chomp
 
-    if start_choice == "surrender"
-      puts coward
+    if start_choice == "surrender" || start_choice == "i surrender!"
+      puts "coward"
       sleep(2)
       exit
     end
 
     while start_choice != "launch" && start_choice != "surrender" do
-      puts "#{start_choice} is not 'LAUNCH' or 'SURRENDER'"
+      puts "'#{start_choice}' is not 'LAUNCH' or 'SURRENDER'"
       start_choice = gets.chomp
-    end
-
-    if start_choice == "surrender"
-      puts
-      puts "coward"
-      puts
-      sleep(3)
-      exit
     end
 
     puts
     set_board_size
     puts
 
-    @computer_placement.choose_valid_selection(@computer_board,@computer_cruiser)
-    @computer_placement.choose_valid_selection(@computer_board,@computer_submarine)
-    @player_placement.ship_input(@player_cruiser)
-    @player_placement.ship_input(@player_submarine)
+    place_all_ships
+    puts
     puts "* My satellites have launched and are ready for battle! *"
     puts
     puts @player_placement.opening_prompt
@@ -179,20 +175,35 @@ class Game
     puts
   end
 
+  def place_all_ships
+    @computer_placement.choose_valid_selection(@computer_board,@computer_cruiser)
+    @computer_placement.choose_valid_selection(@computer_board,@computer_submarine)
+    @player_placement.ship_input(@player_cruiser)
+    @player_placement.ship_input(@player_submarine)
+  end
+
   def take_turn
     puts "Enter the coordinates for your shot:"
     player_input = gets.chomp
-    if player_input == "I surrender!"
+
+    if player_input == "i surrender!"
       exit
     end
 
     while @computer_board.valid_coordinate?(player_input) == false || @used_computer_board_cells.include?(player_input) do
-      if @computer_board.valid_coordinate?(player_input)
+      if @computer_board.valid_coordinate?(player_input) == false
         puts "Please enter a valid coordinate:"
+        player_input = gets.chomp
+        if player_input == "i surrender!"
+          exit
+        end
       elsif @used_computer_board_cells.include?(player_input)
         puts "Wake up! You have already performed a shot on this coordinate."
+        player_input = gets.chomp
+        if player_input == "i surrender!"
+          exit
+        end
       end
-      player_input = gets.chomp
     end
 
     @computer_cells_array.delete(player_input)
