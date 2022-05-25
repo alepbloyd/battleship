@@ -1,5 +1,3 @@
-require 'pry'
-
 class ComputerPlacement
 
   attr_reader :board
