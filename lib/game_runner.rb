@@ -3,10 +3,7 @@ require './lib/cell'
 require './lib/board'
 require './lib/computer_placement'
 require './lib/player_placement'
-require './lib/turn'
 require './lib/game'
-require 'rspec'
-require 'pry'
 
 new_game = Game.new
 new_game.start_game
