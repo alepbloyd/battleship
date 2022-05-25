@@ -23,13 +23,13 @@ class PlayerPlacement
     "Enter the squares for the #{@ships_to_be_placed[0].name} (#{@ships_to_be_placed[0].length} spaces):"
   end
 
-  def user_input_array
+  def player_input_array
     input = gets.chomp
     input.split(" ")
   end
 
-  def check_user_input(ship)
-    check_input = user_input_array
+  def check_player_input(ship)
+    check_input = player_input_array
 
     if check_input[0] == "quit!"
       exit
@@ -37,7 +37,7 @@ class PlayerPlacement
 
     while @board.valid_placement?(ship, check_input) == false do
       puts "Those are invalid coordinates. Please try again:"
-      check_input = user_input_array
+      check_input = player_input_array
     end
 
     @board.place(ship, check_input)
