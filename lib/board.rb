@@ -26,6 +26,10 @@ class Board
     @occupied_cells = []
   end
 
+  def convertible_to_integer?(string)
+    string.to_i.to_s == string
+  end
+
   def valid_coordinate?(coordinate)
     @cells.has_key?(coordinate)
   end

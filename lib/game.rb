@@ -21,18 +21,26 @@ class Game
   end
 
   def start_game
+
     puts "Welcome to SPACERACE!"
-    puts "Feautring USA(user) vs USSR(computer)"
+    puts
+    puts "Featuring USA(user) vs USSR(computer)"
+    puts
     puts "Enter: p to LAUNCH. Enter: q to SURRENDER."
+    puts
     puts "You may exit this journey at anytime by entering: quit!"
+    puts
     start_choice = gets.chomp
+
     if start_choice == "quit!"
       exit
     end
+
     while start_choice != "p" && start_choice != "q" do
       puts "p to play, q to quit."
       start_choice = gets.chomp
     end
+
     if start_choice == "q"
       exit
     end
@@ -42,19 +50,28 @@ class Game
     @player_placement.ship_input(@user_cruiser)
     @player_placement.ship_input(@user_submarine)
     puts "My satellites have launched and are ready for battle!"
+    puts
     puts @player_placement.opening_prompt
     puts
     puts @player_placement.board.render
     puts
     puts @player_placement.ship_instructions
     @player_placement.check_user_input(@player_placement.ships_to_be_placed[0])
+    puts
     puts @player_placement.board.render(true)
+    puts
     puts @player_placement.ship_instructions
+    puts
     @player_placement.check_user_input(@player_placement.ships_to_be_placed[0])
-    puts "USSR BOARD"
+    puts
+    puts "----- USSR BOARD -----"
+    puts
     puts @computer_placement.board.render(true)
-    puts "USA BOARD"
+    puts
+    puts "----- USA BOARD -----"
+    puts
     puts @player_placement.board.render(true)
+    puts
   end
 
   def take_turn
@@ -87,6 +104,7 @@ class Game
     @used_player_board_cells << computer_choice
     @player_board.cells[computer_choice].fire_upon
     previous_shot = @used_computer_board_cells.last
+    puts
     if @computer_board.cells[previous_shot].render == "H"
       puts "Your shot on #{previous_shot} was a hit."
     elsif @computer_board.cells[previous_shot].render == "M"
@@ -94,6 +112,7 @@ class Game
     elsif @computer_board.cells[previous_shot].render == "X"
       puts "Your shot on #{previous_shot} has eliminated a satellite! Keep it up!!!"
     end
+    puts
     previous_shot = @used_player_board_cells.last
     if @player_board.cells[previous_shot].render == "H"
       puts "USSR shot on #{previous_shot} was a hit."
@@ -102,9 +121,15 @@ class Game
     elsif @player_board.cells[previous_shot].render == "X"
       puts "USSR shot on #{previous_shot} Oh no, we lost a satellite! Get it together!!!"
     end
+    puts
+    puts "----- USSR BOARD -----"
+    puts
     puts @computer_board.render(true)#take out
     puts
+    puts "----- USA BOARD -----"
+    puts
     puts @player_board.render(true)
+    puts
     if @computer_cruiser.sunk? == true && @computer_submarine.sunk? == true
       @gameover = true
       puts "GAME OVER, USA WINS!!!"

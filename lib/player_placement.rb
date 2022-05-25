@@ -1,5 +1,7 @@
 class PlayerPlacement
-attr_reader :board, :ships_to_be_placed
+
+  attr_reader :board, :ships_to_be_placed
+
   def initialize(board)
     @board = board
     @ships_to_be_placed = []
@@ -24,30 +26,24 @@ attr_reader :board, :ships_to_be_placed
   def user_input_array
     input = gets.chomp
     input.split(" ")
-
   end
 
   def check_user_input(ship)
     check_input = user_input_array
+
     if check_input[0] == "quit!"
       exit
     end
+
     while @board.valid_placement?(ship, check_input) == false do
       puts "Those are invalid coordinates. Please try again:"
       check_input = user_input_array
     end
+
     @board.place(ship, check_input)
     @ships_to_be_placed.shift
-
-
-
-    # if @board.valid_placement?(ship, check_input)
-    #   @board.place(ship, check_input)
-    #   @ships_to_be_placed.shift
-    # else
-    #   "Those are invalid coordinates. Please try again:"
-    # end
   end
+
   def place_ship
     @board.place(ship, input_array)
   end
