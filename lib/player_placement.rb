@@ -29,7 +29,6 @@ class PlayerPlacement
   end
 
   def check_player_input(ship)
-    # check_input = player_input_array
 
     input = gets.chomp
 
